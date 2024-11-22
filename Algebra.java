@@ -44,40 +44,48 @@ public class Algebra {
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-			if (x1 < 0 && x2<0){
-				x1 = -1*x1;
-				x2 = -1*x2;	}
-
-		int sum = 0; 
-		for (int i = 0; i < x2 ;i++) {
-			sum = plus(sum, x1);}
-		if ((x1<0 && x2<0) || (x2>0 && x1>0)) {
-			return sum; 		
+		if(x1 == 0 || x2 == 0){
+			return 0;
 		}
-		return -sum;	
-	}
+		int sum = x1;
+	for(int i = 0; i < x2 - 1; i++){
+			sum = plus(sum,x1);
+		}
+		return sum;
+}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		// Replace the following statement with your code
-		int result =1; 
-		for (int i = 0; i < n; i++) {
-		result = times(result, x);}
-		return result;
-	}
+		if(x == 1 || n == 0){
+            return 1;
+        }
+        int sum = x;
+        for(int i = 0; i < n - 1; i++){
+            sum = times(sum,x);
+        }
+        return sum;
+    }
+
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		// Replace the following statement with your code
-		if (x1 < 0 && x2<0){
-			x1 = -1*x1;
-			x2 = -1*x2;	}
+		if(x1 == 0){
+			return 0;
+		}
+		if(x2 == 1){
+			return x1;
+		}
 		int count = 0;
-		while (x1>=x2 ) {
-			x1 = minus(x1, x2); //25-7   18-7  11-7   4-7 
-			count = plus(count,1);} //1   2   3   
+		int sum = x2;
+		while(sum <= x1){
+			sum = plus(sum,x2);
+			count ++;
+		}
 		return count;
-	}
+}
+
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
@@ -92,32 +100,17 @@ public class Algebra {
     // Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		// Replace the following statement with your code
-		if (x < 0) {
-			System.out.print("Cannot compute the square root of a negative number.");
-		}
-		if (x == 0 || x == 1) {
-			return x;
-		}
-	
-		int low = 0;
-		int high = x;
-		int mid = 0;
-		int epsilon = 1;
-	
-		while ((high - low) > epsilon) {
-			mid = div(plus(low, high), 2);
-			int midSq = times(mid, mid);
-	
-			if (midSq == x) {
-				return mid;
-			} else if (midSq < x) {
-				low = mid;
-			} else {
-				high = mid;
+		int base = 1;
+		while(pow(base,2) < x){
+			if(pow(plus(base,1),2) > x)
+			{
+				return base;
 			}
-		}
-	
-		return mid;
+			base ++;
+		//  System.out.println("base is: " + base);
 	}
+return base;
+}         
+
 	
 	}
