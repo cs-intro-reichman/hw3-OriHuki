@@ -26,42 +26,67 @@ public class Algebra {
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+		while (x2!=0) {
+			x1++; 
+			x2--;}
+		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+	while (x2!=0) {
+		x1--;
+	    x2--;}
+
+		return x1;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+	int sum = 0; 
+		for (int i = 0; i < x2; i++) {
+			sum = plus(sum, x1);}
+			return sum; 
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		// Replace the following statement with your code
-		return 0;
+		int result =1; 
+		for (int i = 0; i < n; i++) {
+		result = times(result, x);}
+		return result;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+		int count = 0;
+		while (x1>=x2 ) {
+			x1 = minus(x1, x2); //25-7   18-7  11-7   4-7 
+			count = plus(count,1);} //1   2   3   
+		return count;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
 		// Replace the following statement with your code
-		return 0;
+		int mod = 0;
+		int a = div(x1, x2); // (25/7) = 3    25-7   18-7  11-7   (4-7)  
+		int b = times(a, x2); //3 * 7 =21 
+		mod = minus(x1, b); //25-21 =4 
+		return mod;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		// Replace the following statement with your code
-		return 0;
-	}	  	  
+		int epsilon= 1; 
+		int g = div(x, 2);
+		int gg = times(g,g);
+		while ((Math.abs(minus(gg, x)) > epsilon)) {
+			g = div(plus(g, div(x, g)), 2);	}
+		return g;
+	}
 }
