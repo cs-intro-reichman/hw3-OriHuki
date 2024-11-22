@@ -9,7 +9,7 @@ public class Algebra {
 	    System.out.println(plus(2,3));   // 2 + 3
 	    System.out.println(minus(7,2));  // 7 - 2
    		System.out.println(minus(2,7));  // 2 - 7
- 		System.out.println(times(3,4));  // 3 * 4
+ 		System.out.println(times(-3,-4));  // 3 * 4
    		System.out.println(plus(2,times(4,2)));  // 2 + 4 * 2
    		System.out.println(pow(5,3));      // 5^3
    		System.out.println(pow(3,5));      // 3^5
@@ -44,10 +44,13 @@ public class Algebra {
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-	int sum = 0; 
-		for (int i = 0; i < x2; i++) {
+		int sum = 0; 
+		for (int i = 0; i < x2 ;i++) {
 			sum = plus(sum, x1);}
-			return sum; 
+		if ((x1<0 && x2<0) || (x2>0 && x1>0)) {
+			return sum; 		
+		}
+		return -sum;	
 	}
 
 	// Returns x^n (for n >= 0)
@@ -78,18 +81,36 @@ public class Algebra {
 		mod = minus(x1, b); //25-21 =4 
 		return mod;
 	}
-	
+
     // Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code 
-	int epsilon = 1;
-	int g = div(x, 2); 
-	int gg = times(g, g); while (abs(minus(gg, x)) > epsilon) { 
-		g = div(plus(g, div(x, g)), 2); 
-		gg = times(g, g); }
-		return g; }
-
-	public static int abs(int n) { 
-	if (n < 0) { return -n; } 
-	return n; }
+		// Replace the following statement with your code
+		if (x < 0) {
+			System.out.print("Cannot compute the square root of a negative number.");
+		}
+		if (x == 0 || x == 1) {
+			return x;
+		}
+	
+		int low = 0;
+		int high = x;
+		int mid = 0;
+		int epsilon = 1;
+	
+		while ((high - low) > epsilon) {
+			mid = div(plus(low, high), 2);
+			int midSq = times(mid, mid);
+	
+			if (midSq == x) {
+				return mid;
+			} else if (midSq < x) {
+				low = mid;
+			} else {
+				high = mid;
+			}
+		}
+	
+		return mid;
+	}
+	
 	}

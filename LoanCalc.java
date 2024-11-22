@@ -28,8 +28,11 @@ public class LoanCalc {
 	// Computes the ending balance of a loan, given the loan amount, the periodical
 	// interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	private static double endBalance(double loan, double rate, int n, double payment) {	
-		// Replace the following statement with your code
-		return 0;
+		rate = rate/100; 
+		double balance =loan;
+		for (int i = 0; i < n; i++) {
+		balance = balance + (balance * rate) - payment; }
+		return balance;
 	}
 	
 	// Uses sequential search to compute an approximation of the periodical payment
@@ -39,7 +42,20 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
 		// Replace the following statement with your code
-		return 0;
+		rate = rate / 100;
+		double payment = 0;
+		double balance;
+		while (true) {
+			iterationCounter++;
+			balance = loan;
+			for (int i = 0; i < n; i++) {
+				balance = balance + (balance * rate) - payment;	}
+			
+				if (Math.abs(balance) < epsilon) {
+				break;}
+				payment += 0.01; 
+			}
+		return payment;
     }
     
     // Uses bisection search to compute an approximation of the periodical payment 
@@ -49,6 +65,29 @@ public class LoanCalc {
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
         // Replace the following statement with your code
-		return 0;
+	rate = rate / 100; 
+    double low = 0;
+    double high = loan;
+    double mid = 0;
+    double balance;
+
+    while ((high - low) > epsilon) {
+        iterationCounter++;
+        mid = (low + high) / 2;
+        balance = loan;
+
+        for (int i = 0; i < n; i++) {
+            balance = balance + (balance * rate) - mid;
+        }
+
+        if (balance > 0) {
+            low = mid;
+        } else {
+            high = mid;
+        }
     }
+
+    return mid;
+}
+
 }
