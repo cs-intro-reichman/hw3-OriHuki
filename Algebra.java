@@ -44,6 +44,10 @@ public class Algebra {
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
+			if (x1 < 0 && x2<0){
+				x1 = -1*x1;
+				x2 = -1*x2;	}
+
 		int sum = 0; 
 		for (int i = 0; i < x2 ;i++) {
 			sum = plus(sum, x1);}
@@ -65,6 +69,9 @@ public class Algebra {
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
 		// Replace the following statement with your code
+		if (x1 < 0 && x2<0){
+			x1 = -1*x1;
+			x2 = -1*x2;	}
 		int count = 0;
 		while (x1>=x2 ) {
 			x1 = minus(x1, x2); //25-7   18-7  11-7   4-7 
