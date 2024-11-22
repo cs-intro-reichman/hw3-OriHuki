@@ -77,16 +77,19 @@ public class Algebra {
 		int b = times(a, x2); //3 * 7 =21 
 		mod = minus(x1, b); //25-21 =4 
 		return mod;
-	}	
-
-	// Returns the integer part of sqrt(x) 
-	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		int epsilon= 1; 
-		int g = div(x, 2);
-		int gg = times(g,g);
-		while ((Math.abs(minus(gg, x)) > epsilon)) {
-			g = div(plus(g, div(x, g)), 2);	}
-		return g;
 	}
-}
+	
+    // Returns the integer part of sqrt(x) 
+	public static int sqrt(int x) {
+		// Replace the following statement with your code 
+	int epsilon = 1;
+	int g = div(x, 2); 
+	int gg = times(g, g); while (abs(minus(gg, x)) > epsilon) { 
+		g = div(plus(g, div(x, g)), 2); 
+		gg = times(g, g); }
+		return g; }
+
+	public static int abs(int n) { 
+	if (n < 0) { return -n; } 
+	return n; }
+	}
