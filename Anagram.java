@@ -36,8 +36,9 @@ public class Anagram {
 			return false;}
 		
 		if (str1.length() == str2.length()) {
-			boolean match = false; 
+	
 			for (int i = 0; i < str1.length(); i++) {
+				boolean match = false; 
 				for (int j = 0 ; j < str2.length(); j++) {
 					if (str1.charAt(i)==str2.charAt(j)) {
 						match = true;
