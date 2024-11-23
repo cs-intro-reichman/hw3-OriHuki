@@ -47,10 +47,10 @@ public class Anagram {
 					}
 						
 				}
-					
+				if (!match) {return false;} //if there isnt a match between chars it return false which mean it isnt an anagram
+	
+		     	}
 			}
-			if (!match) {return false;} //if there isnt a match between chars it return false which mean it isnt an anagram
-		}
 		return true;
 	}
 	   
