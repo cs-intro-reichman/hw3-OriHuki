@@ -60,13 +60,13 @@ public class Anagram {
 	public static String preProcess(String str) {
 		// Replace the following statement with your code
 		str = str.toLowerCase();
+		String result = "";
 		for (int i = 0; i <str.length(); i++) {
-			if (str.charAt(i)>=65 && str.charAt(i)<=90 || str.charAt(i) >=97 && str.charAt(i)<=122) {
-				System.out.print(str.charAt(i));
-			}
-		}
-		return "";
-	} 
+			char c = str.charAt(i);
+			if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || c == ' ') {
+				result += c;} }
+		return result;
+}
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
