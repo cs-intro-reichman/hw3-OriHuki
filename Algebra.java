@@ -9,7 +9,7 @@ public class Algebra {
 	    System.out.println(plus(2,3));   // 2 + 3
 	    System.out.println(minus(7,2));  // 7 - 2
    		System.out.println(minus(2,7));  // 2 - 7
- 		System.out.println(times(-3,-4));  // 3 * 4
+ 		System.out.println(times(-3,-4));  // -3 * 4
    		System.out.println(plus(2,times(4,2)));  // 2 + 4 * 2
    		System.out.println(pow(5,3));      // 5^3
    		System.out.println(pow(3,5));      // 3^5
@@ -38,22 +38,21 @@ public class Algebra {
 	while (x2!=0) {
 		x1--;
 	    x2--;}
-
 		return x1;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		if(x1 == 0 || x2 == 0){
-			return 0;
+		int result = 0;
+		if (x2 > 0){
+			for (int i = 0; i < x2; i++){
+				result += x1;}}
+			else if (x2 < 0){
+			for (int i = 0; i > x2; i--) {
+				result -= x1;}}
+		return result;
 		}
-		int sum = x1;
-	for(int i = 0; i < x2 - 1; i++){
-			sum = plus(sum,x1);
-		}
-		return sum;
-}
-
+		
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		// Replace the following statement with your code
@@ -65,8 +64,7 @@ public class Algebra {
             sum = times(sum,x);
         }
         return sum;
-    }
-
+  		}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
@@ -84,33 +82,27 @@ public class Algebra {
 			count ++;
 		}
 		return count;
-}
-
+		}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
 		// Replace the following statement with your code
-		int mod = 0;
-		int a = div(x1, x2); // (25/7) = 3    25-7   18-7  11-7   (4-7)  
-		int b = times(a, x2); //3 * 7 =21 
-		mod = minus(x1, b); //25-21 =4 
-		return mod;
-	}
+		while (x1 >= x2){
+			x1 -= x2;
+		}	
+		return x1;
+		}
 
     // Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		// Replace the following statement with your code
-		int base = 1;
-		while(pow(base,2) < x){
-			if(pow(plus(base,1),2) > x)
-			{
-				return base;
-			}
-			base ++;
-		//  System.out.println("base is: " + base);
-	}
-return base;
-}         
+		int i = 0;
+        while (times(i, i) <= x) {
+            i++;
+        }
+		i-= 1;
+        return i;
+		}	 
 
 	
 	}
