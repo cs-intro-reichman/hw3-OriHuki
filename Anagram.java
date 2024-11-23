@@ -29,7 +29,28 @@ public class Anagram {
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
 		// Replace the following statement with your code
-		return false;
+		str1 = str1.toLowerCase();
+		str2 = str2.toLowerCase();
+		
+		if (str1.length() != str2.length()) {
+			return false;}
+		
+		if (str1.length() == str2.length()) {
+			boolean match = false; 
+			for (int i = 0; i < str1.length(); i++) {
+				for (int j = 0 ; j < str2.length(); j++) {
+					if (str1.charAt(i)==str2.charAt(j)) {
+						match = true;
+						str2 = str2.substring(0, j) + "*" + str2.substring(j + 1); // it takes the match letter and replace it by other letter like *
+						break; // if there is a match chat it exit from the inside loop 							
+					}
+						
+				}
+					
+			}
+			if (!match) {return false;} //if there isnt a match between chars it return false which mean it isnt an anagram
+		}
+		return true;
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
@@ -37,13 +58,25 @@ public class Anagram {
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
 		// Replace the following statement with your code
+		str = str.toLowerCase();
+		for (int i = 0; i <str.length(); i++) {
+			if (str.charAt(i)>=65 && str.charAt(i)<=90 || str.charAt(i) >=97 && str.charAt(i)<=122) {
+				System.out.print(str.charAt(i));
+			}
+		}
 		return "";
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		String randomAnagram ="";
+		while (str.length() > 0) {
+			int randomIndex = (int) (Math.random() * str.length());
+			char randomChar = str.charAt(randomIndex);
+			randomAnagram = randomAnagram + randomChar;
+			str = str.substring(0, randomIndex) + str.substring(randomIndex + 1);
+		}
+		return randomAnagram;
 	}
 }
